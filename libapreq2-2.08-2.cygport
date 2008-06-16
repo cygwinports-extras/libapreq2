@@ -1,0 +1,42 @@
+APACHE_MAJOR=${PV_MAJ}
+inherit perl apache
+
+DESCRIPTION="Apache HTTP Request library"
+HOMEPAGE="http://httpd.apache.org/apreq/"
+SRC_URI="mirror://apache/httpd/libapreq/${P}.tar.gz"
+
+abi=3
+PKG_NAMES="${PN} ${PN}_${abi} ${PN}-devel apache2-mod_${PN#lib} perl-Apache2-Request"
+PKG_HINTS="setup lib devel apache perl"
+PKG_CONTENTS[0]=
+PKG_CONTENTS[1]="usr/bin/*-${abi}.dll usr/share/doc/"
+PKG_CONTENTS[2]='usr/bin/*-config usr/include/ usr/lib/lib*'
+PKG_CONTENTS[3]="etc/ ${APXS_LIBEXECDIR#/}"
+PKG_CONTENTS[4]="${PERL_VENDORLIB#/} usr/share/man/"
+
+DIFF_EXCLUDES="doxygen.conf REPORT SMOKE"
+
+DEPS_PATH="${APXS_LIBEXECDIR}"
+
+src_compile() {
+	cd ${S}
+	cygautoreconf
+	lndirs
+
+	cd ${B}
+	cygconf \
+		--disable-static \
+		--with-apache2-apxs=/usr/sbin/apxs2 \
+		--enable-perl-glue --with-mm-opts=INSTALLDIRS=vendor
+	cygmake \
+		mod_apreq2_la_LIBADD="-no-undefined -shrext ${APACHE_MOD_SHREXT} ${LIBHTTPD}" \
+		OTHERLDFLAGS="${B}/module/apache2/.libs/mod_apreq2.dll.a ${APXS_LIBEXECDIR}/mod_perl.dll.a"
+	cygmake -C ${B}/glue/perl manifypods
+}
+
+src_install() {
+	cd ${B}
+	cyginstall
+	apache_postinst
+	perl_postinst
+}

@@ -1,5 +1,5 @@
 category: Web
-requires: cygwin apr1 aprutil1
+requires: cygwin libapr1-devel libaprutil1-devel
 external-source: libapreq2
 sdesc: "Apache 2 client request library (development)"
 ldesc: "libapreq is a safe, standards-compliant, high-performance 

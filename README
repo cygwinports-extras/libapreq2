@@ -6,29 +6,25 @@ Apache::Request and Apache::Cookie are the lightweight mod_perl analogs
 of the CGI and CGI::Cookie perl modules.
 
 Runtime requirements:
-  cygwin-1.5.24-2
+  cygwin-1.5.25-15
   apache2-2.2.6-1
-  apache2-mod_perl-2.0.3-1
-  libapr1-1.2.11-1
-  libaprutil1-1.2.10-1
-  perl-5.8.8-4
+  apache2-mod_perl-2.0.4-1
+  libapr1-1.2.12-1
+  libaprutil1-1.2.12-1
+  perl-5.10.0-4
 
 Build requirements:
 (besides corresponding -devel packages)
-  cygwin-1.5.24-2
   autoconf2.5-2.61-1
   automake1.9-1.9.6-2
-  binutils-20060817-1
-  bison-2.3-1
-  cygport-0.3.7-1
-  flex-2.5.33-2
-  gawk-3.1.5-4
+  binutils-20080523-1
+  cygport-0.3.11-1
+  gawk-3.1.6-1
   gcc-core-3.4.4-3
-  libtool1.5-1.5.23a-2
+  libtool-2.2.2-2
   make-3.81-1
-  perl-5.8.8-4
-  perl-ExtUtils-XSBuilder-0.28-1
-  pkg-config-0.21-1
+  perl-ExtUtils-XSBuilder-0.28-2
+  pkg-config-0.23a-2
   sed-4.1.5-2
 
 Canonical website:
@@ -57,9 +53,8 @@ This will create:
 
 Files included in the binary package:
 
-(libapreq2)
+(libapreq2_3)
   /usr/bin/cygapreq2-3.dll
-  /usr/share/doc/Cygwin/libapreq2-2.08.README
   /usr/share/doc/libapreq2-2.08/Changes
   /usr/share/doc/libapreq2-2.08/INSTALL
   /usr/share/doc/libapreq2-2.08/LICENSE
@@ -86,39 +81,25 @@ Files included in the binary package:
   /usr/lib/apache2/mod_apreq2.so
 
 (perl-Apache2-Request)
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Apache2/Apache2.bs
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Apache2/Apache2.dll
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Apache2/libApache2.dll.a
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/CGI/CGI.bs
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/CGI/CGI.dll
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/CGI/libCGI.dll.a
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Cookie/Cookie.bs
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Cookie/Cookie.dll
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Cookie/libCookie.dll.a
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Error/Error.bs
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Error/Error.dll
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Error/libError.dll.a
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Hook/Hook.bs
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Hook/Hook.dll
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Hook/libHook.dll.a
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Param/Param.bs
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Param/Param.dll
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Param/libParam.dll.a
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Parser/Parser.bs
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Parser/Parser.dll
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Parser/libParser.dll.a
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Request.bs
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/Request.dll
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/APR/Request/libRequest.dll.a
-  /usr/lib/perl5/vendor_perl/5.8/cygwin/auto/libapreq2/.packlist
+  /usr/lib/perl5/vendor_perl/5.10/i686-cygwin/auto/APR/Request/Apache2/Apache2.dll
+  /usr/lib/perl5/vendor_perl/5.10/i686-cygwin/auto/APR/Request/CGI/CGI.dll
+  /usr/lib/perl5/vendor_perl/5.10/i686-cygwin/auto/APR/Request/Cookie/Cookie.dll
+  /usr/lib/perl5/vendor_perl/5.10/i686-cygwin/auto/APR/Request/Error/Error.dll
+  /usr/lib/perl5/vendor_perl/5.10/i686-cygwin/auto/APR/Request/Hook/Hook.dll
+  /usr/lib/perl5/vendor_perl/5.10/i686-cygwin/auto/APR/Request/Param/Param.dll
+  /usr/lib/perl5/vendor_perl/5.10/i686-cygwin/auto/APR/Request/Parser/Parser.dll
+  /usr/lib/perl5/vendor_perl/5.10/i686-cygwin/auto/APR/Request/Request.dll
+  /usr/lib/perl5/vendor_perl/5.10/i686-cygwin/auto/libapreq2/.packlist
   /usr/share/man/man3/Apache2.Cookie.3pm.gz
   /usr/share/man/man3/Apache2.Request.3pm.gz
   /usr/share/man/man3/Apache2.Upload.3pm.gz
-  /usr/share/perl/cygwin-pods/5.8/libapreq2.pod
 
 ------------------
 
 Port Notes:
+
+----- version 2.08-2 -----
+Rebuilt for perl-5.10.
 
 ----- version 2.08-1 -----
 Initial release for Cygwin.

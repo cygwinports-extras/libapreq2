@@ -1,7 +1,4 @@
-category: Web
-requires: cygwin libapr1 libaprutil1
-sdesc: "Apache 2 client request library (runtime)"
-ldesc: "libapreq is a safe, standards-compliant, high-performance 
-library used for parsing HTTP cookies, query-strings and POST data. The 
-perl APIs Apache::Request and Apache::Cookie are the lightweight 
-mod_perl analogs of the CGI and CGI::Cookie perl modules."
+category: _obsolete
+requires: libapreq2_3
+sdesc: "Source-only package"
+ldesc: "Source-only package"
