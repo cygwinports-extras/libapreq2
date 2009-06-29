@@ -1,5 +1,5 @@
 category: Web Perl
-requires: cygwin apache2-mod_apreq2 apache2-mod_perl libapr1 libaprutil1 libapreq2_3
+requires: apache2-mod_apreq2 apache2-mod_perl libapr1 libaprutil1 libapreq2_3
 external-source: libapreq2
 sdesc: "Apache 2 client request library (Perl bindings)"
 ldesc: "libapreq is a safe, standards-compliant, high-performance 
