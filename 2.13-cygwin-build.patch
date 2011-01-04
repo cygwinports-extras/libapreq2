@@ -1,0 +1,22 @@
+--- origsrc/libapreq2-2.13/acinclude.m4	2010-11-25 13:11:28.000000000 -0600
++++ src/libapreq2-2.13/acinclude.m4	2011-01-04 00:52:39.519937500 -0600
+@@ -204,7 +204,7 @@ dnl Fallback to oldest version available
+         dnl Absolute source/build directory
+         abs_srcdir=`(cd $srcdir && pwd)`
+         abs_builddir=`pwd`
+-        top_builddir="$abs_srcdir"
++        top_builddir="$abs_builddir"
+ 
+         if test "$abs_builddir" != "$abs_srcdir"; then
+           USE_VPATH=1
+--- origsrc/libapreq2-2.13/library/Makefile.am	2010-11-25 13:11:28.000000000 -0600
++++ src/libapreq2-2.13/library/Makefile.am	2011-01-04 00:53:17.006802900 -0600
+@@ -5,7 +5,7 @@ lib_LTLIBRARIES = libapreq2.la
+ libapreq2_la_SOURCES = util.c version.c cookie.c param.c parser.c \
+                        parser_urlencoded.c parser_header.c parser_multipart.c \
+ 	               module.c module_custom.c module_cgi.c error.c
+-libapreq2_la_LDFLAGS = -version-info @APREQ_LIBTOOL_VERSION@ @APR_LTFLAGS@ @APR_LIBS@
++libapreq2_la_LDFLAGS = -version-info @APREQ_LIBTOOL_VERSION@ -no-undefined @APR_LTFLAGS@ @APR_LIBS@
+ 
+ test: all
+ 	cd t; $(MAKE) test
