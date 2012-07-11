@@ -24,7 +24,7 @@ src_compile() {
 	cygconf \
 		--disable-static \
 		--with-apache2-apxs=${APXS2} \
-		--enable-perl-glue --with-mm-opts=INSTALLDIRS=vendor
+		--enable-perl-glue "--with-mm-opts=INSTALLDIRS=vendor OPTIMIZE=\"\$(CFLAGS)\""
 	cygmake \
 		mod_apreq2_la_LIBADD="-no-undefined -shrext .so ${APACHE2_LIBS}" \
 		OTHERLDFLAGS="${B}/module/apache2/.libs/mod_apreq2.dll.a ${B}/library/.libs/libapreq2.dll.a ${APACHE2_LIBEXECDIR}/mod_perl.dll.a ${APACHE2_LIBS}"
