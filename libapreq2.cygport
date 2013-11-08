@@ -1,14 +1,26 @@
 inherit perl apache2
 
-DESCRIPTION="Apache HTTP Request library"
+NAME="libapreq2"
+VERSION=2.13
+RELEASE=2
+CATEGORY="Libs"
+SUMMARY="Apache 2 client request library"
+DESCRIPTION="libapreq is a safe, standards-compliant, high-performance library
+used for parsing HTTP cookies, query-strings and POST data. The perl APIs
+Apache::Request and Apache::Cookie are the lightweight mod_perl analogs of the
+CGI and CGI::Cookie perl modules."
 HOMEPAGE="http://httpd.apache.org/apreq/"
-SRC_URI="mirror://apache/httpd/libapreq/${P}.tar.gz"
+SRC_URI="mirror://apache/httpd/libapreq/${NAME}-${VERSION}.tar.gz"
 PATCH_URI="2.13-cygwin-build.patch"
 
-PKG_NAMES="${PN}_3 ${PN}-devel apache2-mod_${PN#lib} perl-Apache2-Request"
+PKG_NAMES="${NAME}_3 ${NAME}-devel apache2-mod_apreq2 perl-Apache2-Request"
 libapreq2_3_CONTENTS="usr/bin/*-3.dll usr/share/doc/"
+libapreq2_devel_REQUIRES="libapr1-devel libaprutil1-devel"
 libapreq2_devel_CONTENTS='usr/bin/*-config usr/include/ usr/lib/lib*'
+apache2_mod_apreq2_CATEGORY="Web"
+apache2_mod_apreq2_SUMMARY=${SUMMARY/library/module}
 apache2_mod_apreq2_CONTENTS="etc/ ${APACHE2_LIBEXECDIR#/}"
+perl_Apache2_Request_CATEGORY="Perl"
 perl_Apache2_Request_CONTENTS="${PERL_VENDORLIB#/} usr/share/man/"
 
 DIFF_EXCLUDES="doxygen.conf REPORT SMOKE"
@@ -36,5 +48,4 @@ src_install() {
 	cyginstall \
 		OTHERLDFLAGS="${B}/module/apache2/.libs/mod_apreq2.dll.a ${B}/library/.libs/libapreq2.dll.a ${APACHE2_LIBEXECDIR}/mod_perl.dll.a ${APACHE2_LIBS}"
 	apache2_postinst
-	perl_postinst
 }
