@@ -1,8 +1,8 @@
-inherit perl apache2
+inherit perl httpd
 
 NAME="libapreq2"
 VERSION=2.13
-RELEASE=2
+RELEASE=3
 CATEGORY="Libs"
 SUMMARY="Apache 2 client request library"
 DESCRIPTION="libapreq is a safe, standards-compliant, high-performance library
@@ -13,19 +13,17 @@ HOMEPAGE="http://httpd.apache.org/apreq/"
 SRC_URI="mirror://apache/httpd/libapreq/${NAME}-${VERSION}.tar.gz"
 PATCH_URI="2.13-cygwin-build.patch"
 
-PKG_NAMES="${NAME}_3 ${NAME}-devel apache2-mod_apreq2 perl-Apache2-Request"
+PKG_NAMES="${NAME}_3 ${NAME}-devel httpd-mod_apreq2 perl-Apache2-Request"
 libapreq2_3_CONTENTS="usr/bin/*-3.dll usr/share/doc/"
 libapreq2_devel_REQUIRES="libapr1-devel libaprutil1-devel"
 libapreq2_devel_CONTENTS='usr/bin/*-config usr/include/ usr/lib/lib*'
-apache2_mod_apreq2_CATEGORY="Web"
-apache2_mod_apreq2_SUMMARY=${SUMMARY/library/module}
-apache2_mod_apreq2_CONTENTS="etc/ ${APACHE2_LIBEXECDIR#/}"
+httpd_mod_apreq2_CATEGORY="Web"
+httpd_mod_apreq2_SUMMARY=${SUMMARY/library/module}
+httpd_mod_apreq2_CONTENTS="${HTTPD_SYSCONFMODULESDIR#/} ${HTTPD_LIBEXECDIR#/}"
 perl_Apache2_Request_CATEGORY="Perl"
 perl_Apache2_Request_CONTENTS="${PERL_VENDORLIB#/} usr/share/man/"
 
 DIFF_EXCLUDES="doxygen.conf REPORT SMOKE"
-
-DEPS_PATH=${APACHE2_LIBEXECDIR}
 
 src_compile() {
 	cd ${S}
@@ -35,17 +33,17 @@ src_compile() {
 	cd ${B}
 	cygconf \
 		--disable-static \
-		--with-apache2-apxs=${APXS2} \
+		--with-apache2-apxs=${HTTPD_APXS} \
 		--enable-perl-glue "--with-mm-opts=INSTALLDIRS=vendor OPTIMIZE=\"\$(CFLAGS)\""
 	cygmake \
-		mod_apreq2_la_LIBADD="-no-undefined -shrext .so ${APACHE2_LIBS}" \
-		OTHERLDFLAGS="${B}/module/apache2/.libs/mod_apreq2.dll.a ${B}/library/.libs/libapreq2.dll.a ${APACHE2_LIBEXECDIR}/mod_perl.dll.a ${APACHE2_LIBS}"
+		mod_apreq2_la_LIBADD="-no-undefined -shrext .so ${HTTPD_LIBS}" \
+		OTHERLDFLAGS="${B}/module/apache2/.libs/mod_apreq2.dll.a ${B}/library/.libs/libapreq2.dll.a -lmod_perl ${HTTPD_LIBS}"
 	cygmake -C ${B}/glue/perl manifypods
 }
 
 src_install() {
 	cd ${B}
 	cyginstall \
-		OTHERLDFLAGS="${B}/module/apache2/.libs/mod_apreq2.dll.a ${B}/library/.libs/libapreq2.dll.a ${APACHE2_LIBEXECDIR}/mod_perl.dll.a ${APACHE2_LIBS}"
-	apache2_postinst
+		OTHERLDFLAGS="${B}/module/apache2/.libs/mod_apreq2.dll.a ${B}/library/.libs/libapreq2.dll.a -lmod_perl ${HTTPD_LIBS}"
+	httpd_loadmodules
 }
