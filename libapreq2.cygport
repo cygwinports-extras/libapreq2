@@ -2,7 +2,7 @@ inherit perl httpd
 
 NAME="libapreq2"
 VERSION=2.13
-RELEASE=3
+RELEASE=4
 CATEGORY="Libs"
 SUMMARY="Apache 2 client request library"
 DESCRIPTION="libapreq is a safe, standards-compliant, high-performance library
